@@ -7,7 +7,7 @@
   <main>
     <section class="speler">
       <h2 class="titel">{{ current.title }} - <span>{{ current.artist }}</span></h2>
-      <div class="control" >
+      <div class="controls" >
 
         <!-- dit zijn de 4 nav knoppen, de "play" en "stop" wisselen als het nummer wel of niet speeld! -->
         <button class="prev" @click="prev">Vorigen</button>
@@ -164,6 +164,7 @@ main {
 }
 
 .speler {
+  
   color: white;
   font-size: 32px;
   text-transform: uppercase;
@@ -173,6 +174,85 @@ main {
 .speler span {
   font-weight: 400;
   font-style: italic;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  padding: 30px 15px;
+  align-items: center;
+}
+
+button {
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.play {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 15px 25px;
+  margin: 0px 15px;
+  border-radius: 8px;
+  color: white;
+  background-color:#1DB954;
+}
+
+.pause {
+  font-size: 20px;
+  font-weight: 700;
+  padding: 15px 25px;
+  margin: 0px 15px;
+  border-radius: 8px;
+  color: white;
+  background-color:#1DB954;
+}
+
+.play:hover {
+    background-color:#168a3e;
+}
+
+.next, .prev {
+  font-size: 10px;
+  font-weight: 700;
+  padding: 15px 25px;
+  margin: 0px 15px;
+  border-radius: 8px;
+  color: white;
+  background-color:#168a3e;
+}
+
+.next:hover, .prev:hover {
+  background-color:#1DB954;
+
+}
+
+.playlist {
+  padding: 0px 30px;
+}
+
+.playlist h3 {
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 30px ;
+  text-align: center;
+}
+
+.playlist .song {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  color: white;
+}
+
+.playlist .song.playing {
+  color: #168a3e;
 }
 
 </style>
