@@ -8,10 +8,10 @@
     <section class="speler">
       <h2 class="titel">{{ current.title }} - <span>{{ current.artist }}</span></h2>
       <div class="contro" >
-        <button class="prev">Vorigen</button>
+        <button class="prev" @click="prev">Vorigen</button>
         <button class="play"  v-if="!isPlaying" @click="play">Play</button>
         <button class="pause" v-else @click="pause">Stop</button>
-        <button class="next">Volgenden</button>
+        <button class="next" @click="next">Volgenden</button>
 
       </div>
     </section>
@@ -64,17 +64,51 @@ export default {
       }
     },
     methods: {
+
+      // start knop hier word het nummer gehaald uit "assets" en afgespeeld, ook als het nummer afglopen is gaat het naar de volden 
+
       play (song) {
         if (typeof song.src != "undefined") {
           this.current = song;
+
           this.player.src = this.current.src;
         }
         this.player.play();
+
+        // hier gaat het nummer na dat het afgelopen is naar de volgenden 
+        
+        this.player.addEventListener('ended', function () {
+          this.index++;
+
+           if (this.index > this.songs.length -1) {
+          this.index = 0;
+                }
+                this.current = this.songs[this.index];
+                this.play(this.current);
+        }.bind(this));
         this.isPlaying = true;
       },
       pause () {
         this.player.pause();
         this.isPlaying = false;
+      },
+      next () {
+        this.index++;
+                if (this.index > this.songs.length -1) {
+          this.index = 0;
+                }
+                this.current = this.songs[this.index];
+                this.play(this.current);
+      },
+      prev () {
+        this.index--;
+                if (this.index < 0) {
+          this.index = this.songs.length -1;
+                }
+                this.current = this.songs[this.index];
+                this.play(this.current);
+        
+        
       }
     },
     created () {
@@ -105,5 +139,10 @@ header {
   padding: 15px;
   background-color: #1DB954 ;
   color: white;
+}
+
+main {
+  width: 100%;
+  max-width: ;
 }
 </style>
