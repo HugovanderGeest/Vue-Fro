@@ -2,12 +2,14 @@
   <div id="app">
   
   <header>
-    <h1>Muziek</h1>
+    <h1>Hugo's Muziek</h1>
   </header>
   <main>
     <section class="speler">
       <h2 class="titel">{{ current.title }} - <span>{{ current.artist }}</span></h2>
-      <div class="contro" >
+      <div class="control" >
+
+        <!-- dit zijn de 4 nav knoppen, de "play" en "stop" wisselen als het nummer wel of niet speeld! -->
         <button class="prev" @click="prev">Vorigen</button>
         <button class="play"  v-if="!isPlaying" @click="play">Play</button>
         <button class="pause" v-else @click="pause">Stop</button>
@@ -17,6 +19,8 @@
     </section>
     <section class="playlist">
       <h3>Playlist</h3>
+
+      <!-- dit laat  zien welken nummer er in de playlist staan, door middel van de title en artist-->
       <button v-for="song in songs" :key="song.src" @click="play(song)" :class="song.src == current.src ? 'song playing' : 'song'">
         {{ song.title }} - {{ song.artist }}
       </button>
@@ -34,6 +38,9 @@ export default {
       index: 0,
       isPlaying: false,
       songs: [
+
+// dit zijn allen nummer die in "assets" staan, heb er de title en artist bijgevoegd voor duidelijkheid wat je afspeeld. 
+
         {
           title: 'Papaoutai ',
           artist: 'Stromae ',
@@ -76,7 +83,7 @@ export default {
         this.player.play();
 
         // hier gaat het nummer na dat het afgelopen is naar de volgenden 
-        
+
         this.player.addEventListener('ended', function () {
           this.index++;
 
@@ -88,10 +95,14 @@ export default {
         }.bind(this));
         this.isPlaying = true;
       },
+
+      //  deze functie stop het nummer en onthoud waar het gebleven was zo dat je daarna weer verde kan 
       pause () {
         this.player.pause();
         this.isPlaying = false;
       },
+
+      // deze functie gaat naar het volgenden nummer
       next () {
         this.index++;
                 if (this.index > this.songs.length -1) {
@@ -100,6 +111,7 @@ export default {
                 this.current = this.songs[this.index];
                 this.play(this.current);
       },
+      // deze functie gaat naar de vorigen 
       prev () {
         this.index--;
                 if (this.index < 0) {
@@ -130,6 +142,9 @@ export default {
 
 body {
   font-family: 'Courier New', Courier, monospace;
+    background-color: rgb(17, 17, 17);
+    color: white;
+
 }
 
 header {
@@ -143,6 +158,21 @@ header {
 
 main {
   width: 100%;
-  max-width: ;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 25px;
 }
+
+.speler {
+  color: white;
+  font-size: 32px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.speler span {
+  font-weight: 400;
+  font-style: italic;
+}
+
 </style>
