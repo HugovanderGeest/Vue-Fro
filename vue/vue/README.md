@@ -1,24 +1,3 @@
-# vue
+Dit is een muziek speler met een paar van mijn lievelings nummers, gemaakt met vue, echt super handig en makkelijk om aan te leren. 
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+http://25383.hosts1.ma-cloud.nl/FRO/Vue/index.html
